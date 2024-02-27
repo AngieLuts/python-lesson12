@@ -43,18 +43,26 @@ def print_data():
 
 
 def delete():
+    smthtodel= input("Type in what needs to be deleted: ")
     print(' Please, choose file to proceed with: \n 1 or 2 ')
     var = int(input())
     while var != 1 and var != 2:
         print('incorrect')
         var = int(input('type in: '))
     if var == 1:
-        with  open('data_ver1.csv', 'a', encoding='utf-8') as f:
+        with open('data_ver1.csv', 'a', encoding='utf-8') as f:
+            data_first = f.readlines()
+            data_first = data_first.remove(smthtodel)
     elif var == 2:
-        with  open('data_ver2.csv', 'a', encoding='utf-8') as f:
+        with open('data_ver2.csv', 'a', encoding='utf-8') as f:
+            data_first = f.readlines()
+            data_first = data_first.remove(smthtodel)
+            
 
 
 def change():
+    smthtochange = input("Type in what needs to be changed: ")
+    newsmth = input("Type with what it should be replaced: ")
     print(' Please, choose file to proceed with: \n 1 or 2 ')
     var = int(input())
     while var != 1 and var != 2:
@@ -63,25 +71,13 @@ def change():
 
     if var == 1:
         with open('data_ver1.csv', 'a', encoding='utf-8') as f:
-        data_first = f.readlines()
-        data_first_list = []
-        smthtochange = input("Type in what needs to be changed: ")
-        newsmth = input("Type with what it should be replaced: ")
-        # index= smthtochange.find(new)
-        for i in range(len(data_first)):
-            if data_first[i] == smthtochange:
-                data_first[i] = data_first[i].replace(smthtochange, newsmth)
-                print(data_first[i])
+            data_first = f.readlines()
+            data_first=data_first.replace(smthtochange,newsmth)
 
     elif var == 2:
         with open('data_ver2.csv', 'a', encoding='utf-8') as f:
             data_second = f. readlines()
-            smthtochange = input("Type in what needs to be changed: ")
-            newsmth = input("Type with what it should be replaced: ")
-            # index= smthtochange.find(new)
-            for i in range(len(data_first)):
-                if data_first[i] == smthtochange:
-                data_first[i] = data_first[i].replace(smthtochange, newsmth)
+            data_second = data_second.replace(smthtochange, newsmth)
                
 
 
@@ -94,8 +90,6 @@ if v == 1:
     change()
 elif v == 2:
     delete()
-elif v == 3:
-    break
 else:
     print('incorrect')
     v = int(input('Try again : '))
